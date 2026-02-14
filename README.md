@@ -1,8 +1,6 @@
 # 🩺 Breast Cancer Prediction using KNN
 
-# ===============================
 # 1️⃣ Import Required Libraries
-# ===============================
 
 import pandas as pd
 import numpy as np
@@ -13,10 +11,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
-
-# ===============================
 # 2️⃣ Load Dataset
-# ===============================
 
 df = pd.read_csv('breast-cancer.csv')
 
@@ -29,10 +24,7 @@ print(df.info())
 print("\nStatistical Summary:")
 print(df.describe())
 
-
-# ===============================
 # 3️⃣ Data Preprocessing
-# ===============================
 
 # Remove unnecessary column
 df.drop(labels=['id'], axis=1, inplace=True)
@@ -46,10 +38,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=2
 )
 
-
-# ===============================
 # 4️⃣ Feature Scaling
-# ===============================
 
 scaler = StandardScaler()
 
@@ -57,17 +46,13 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 
-# ===============================
 # 5️⃣ Train KNN Model (k=3)
-# ===============================
 
 knn = KNeighborsClassifier(n_neighbors=3)
 knn.fit(X_train, y_train)
 
 
-# ===============================
 # 6️⃣ Model Evaluation
-# ===============================
 
 y_pred = knn.predict(X_test)
 
@@ -82,9 +67,7 @@ print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 
 
-# ===============================
 # 7️⃣ Finding Best K Value
-# ===============================
 
 scores = []
 
@@ -106,3 +89,4 @@ plt.show()
 best_k = scores.index(max(scores)) + 1
 print("\nBest K value:", best_k)
 print("Best Accuracy:", max(scores))
+
